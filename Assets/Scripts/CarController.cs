@@ -114,7 +114,7 @@ public class CarController : MonoBehaviour
         //2. plug your values into the character controller
         Vector3 movement = transform.forward * Time.deltaTime * currentSpeed;
         movement.y = 0;
-        playerCon.Move(movement); // move along forward facing
+        transform.position += movement;
         Rotate(-horizontal);
     }
 }
