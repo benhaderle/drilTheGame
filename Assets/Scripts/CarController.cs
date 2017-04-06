@@ -115,6 +115,7 @@ public class CarController : MonoBehaviour
         Vector3 movement = transform.forward * Time.deltaTime * currentSpeed;
         movement.y = 0;
         transform.position += movement;
+
         Rotate(-horizontal);
     }
 }
