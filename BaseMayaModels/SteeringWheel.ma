@@ -1,6 +1,6 @@
 //Maya ASCII 2017 scene
 //Name: SteeringWheel.ma
-//Last modified: Thu, Apr 06, 2017 03:41:14 PM
+//Last modified: Thu, Apr 06, 2017 03:50:01 PM
 //Codeset: 1252
 requires maya "2017";
 currentUnit -l centimeter -a degree -t film;
@@ -13,8 +13,8 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "DE2205B4-4431-FB4E-F343-5EA4082A5423";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 2.4547659780926376 3.1610093658331473 -7.7721762620196841 ;
-	setAttr ".r" -type "double3" -18.938352729596232 -196.19999999998089 0 ;
+	setAttr ".t" -type "double3" 1.0327156113032152 0.055535834236245751 -8.4935438084027126 ;
+	setAttr ".r" -type "double3" 2.6616472704416849 -185.39999999995163 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "9578AA5B-4FC6-28E0-25F1-01829F077E45";
 	setAttr -k off ".v" no;
