@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
+	public static CarController Instance;
     public static GameObject spedometer;
     //public GameObject carModel;
     public static Text text;
@@ -27,7 +28,8 @@ public class CarController : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        // save reference to our component 
+        // save reference to our component
+		Instance = this;
         playerCon = GetComponent<CharacterController>();
         transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
     }
@@ -43,6 +45,12 @@ public class CarController : MonoBehaviour
         else
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yVal, 0);
     }
+
+	void OnCollisionEnter(Collision col){
+		if (col.collider.tag == "Shelf"){
+			currentSpeed = 0;
+		}
+	}
 
     // Update is called once per frame
     void Update() {
