@@ -14,9 +14,10 @@ public class doorSwing : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (swinging == true) {
-			door.transform.Rotate (0, 20 * Time.deltaTime, 0);
-		}
-
+			if (transform.eulerAngles.y < 180) {
+				door.transform.Rotate (0, 50 * Time.deltaTime, 0);
+			}
+		} 
 	}
 	void OnTriggerEnter(Collider other){
 		swinging = true;
