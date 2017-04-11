@@ -8,8 +8,12 @@ public class CollisionParticleController : MonoBehaviour {
 
 	public int burstCalculationModifier = 10;
 
+	public float testBurstNum;
+
 	public float cooldownTime = 0.25f;
 	private float currentCooldown = 1f;
+
+	public bool testburst = false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +30,7 @@ public class CollisionParticleController : MonoBehaviour {
 	}
 
 	void ParticleBurst(){
-		int minBurstSize = Mathf.RoundToInt(CarController.Instance.currentSpeed) + burstCalculationModifier;
+		int minBurstSize = Mathf.RoundToInt(testBurstNum) + burstCalculationModifier;
 		ParticleSystem.Burst burst = new ParticleSystem.Burst(0, (short) minBurstSize, (short) (minBurstSize * 2));
 
 		ParticleSystem.Burst[] burstStorage = new ParticleSystem.Burst[1];
@@ -42,5 +46,12 @@ public class CollisionParticleController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		currentCooldown += Time.deltaTime;
+		if (testburst){
+			if (currentCooldown > cooldownTime){
+				currentCooldown = 0f;
+				ParticleBurst();
+			}
+			testburst = false;
+		}
 	}
 }
