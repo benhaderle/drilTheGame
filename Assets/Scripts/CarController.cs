@@ -46,11 +46,11 @@ public class CarController : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yVal, 0);
     }
 
-	void OnCollisionEnter(Collision col){
+	/*void OnCollisionEnter(Collision col){
 		if (col.collider.tag == "Shelf"){
 			currentSpeed = 0;
 		}
-	}
+	}*/
 
     // Update is called once per frame
     void Update() {
