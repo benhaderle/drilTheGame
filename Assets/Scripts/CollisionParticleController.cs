@@ -30,7 +30,7 @@ public class CollisionParticleController : MonoBehaviour {
 	}
 
 	void ParticleBurst(){
-		int minBurstSize = Mathf.RoundToInt(testBurstNum) + burstCalculationModifier;
+		int minBurstSize = Mathf.RoundToInt(Mathf.Abs(CarController.Instance.currentSpeed) / 4) + burstCalculationModifier;
 		ParticleSystem.Burst burst = new ParticleSystem.Burst(0, (short) minBurstSize, (short) (minBurstSize * 2));
 
 		ParticleSystem.Burst[] burstStorage = new ParticleSystem.Burst[1];

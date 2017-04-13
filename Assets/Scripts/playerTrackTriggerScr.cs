@@ -15,9 +15,4 @@ public class playerTrackTriggerScr : MonoBehaviour {
 			BroadcastMessage ("GenerateNext");
 		}
 	}
-
-	void OnTriggerEnter() {
-		BroadcastMessage("GenerateNext");
-
-	}
 }
