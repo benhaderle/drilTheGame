@@ -25,7 +25,6 @@ public class hallmarkGenerate : MonoBehaviour {
 
 	void GenerateNext() {
 		Instantiate (tileFab, transform.position, Quaternion.identity);
-		Transform newTile = transform.position = new Vector3 (0, 0, transform.position.z + 20);
-		tileList.Add (newTile);
+		transform.position = new Vector3 (0, 0, transform.position.z + 20);
 	}
 }

@@ -15,6 +15,11 @@ public class CarController : MonoBehaviour
     bool braking;
     bool reversing;
     bool moving;
+
+    AudioSource jail;
+    AudioSource car;
+    AudioSource police;
+
     public float lerpT;
 
     public float maxSpeed;
@@ -29,7 +34,13 @@ public class CarController : MonoBehaviour
     // Use this for initialization
     void Start() {
         // save reference to our component
-		Instance = this;
+        AudioSource[] sources = GetComponents<AudioSource>();
+        jail = sources[0];
+        car = sources[1];
+        police = sources[2];
+        
+
+        Instance = this;
         playerCon = GetComponent<CharacterController>();
         transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
     }
@@ -54,6 +65,14 @@ public class CarController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        //audio
+        car.pitch = 1 + (.8f * (Mathf.Abs(currentSpeed) / maxSpeed));
+
+        if (jail.pitch < 2) 
+            jail.pitch = 500 / transform.position.z;
+        if(police.volume < .5f)
+            police.volume = (1000 - transform.position.z) / 1000f;
+
         //1. grab input from input devices
         float horizontal = Input.GetAxis("Horizontal"); //left and right movement
         float vertical = Input.GetAxis("Vertical"); // up and down movement
