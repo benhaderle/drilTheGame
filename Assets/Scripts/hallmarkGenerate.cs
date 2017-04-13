@@ -6,7 +6,6 @@ public class hallmarkGenerate : MonoBehaviour {
 
 	public Transform tileFab;
 	public int storeLength = 12;
-	public Transform player;
 	List<Transform> tileList = new List<Transform>();
 
 	// Use this for initialization
