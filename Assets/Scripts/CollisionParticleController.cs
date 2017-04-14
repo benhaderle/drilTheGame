@@ -10,6 +10,9 @@ public class CollisionParticleController : MonoBehaviour {
 
 	public float testBurstNum;
 
+    float time = 2f;
+    float timer = 2f;
+
 	public float cooldownTime = 0.25f;
 	private float currentCooldown = 1f;
 
@@ -25,9 +28,20 @@ public class CollisionParticleController : MonoBehaviour {
 			if (currentCooldown > cooldownTime){
 				currentCooldown = 0f;
 				ParticleBurst();
+                timer = time;
 			}
 		}
 	}
+
+    void OnCollisionStay(Collision collision) {
+        if (collision.collider.tag == "Car") {
+            timer -= Time.deltaTime;
+            if (timer < 0) {
+                ParticleBurst();
+                timer = time;
+            }
+        }
+    }
 
 	void ParticleBurst(){
 		int minBurstSize = Mathf.RoundToInt(Mathf.Abs(CarController.Instance.currentSpeed) / 4) + burstCalculationModifier;
