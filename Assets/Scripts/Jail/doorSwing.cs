@@ -47,10 +47,11 @@ public class doorSwing : MonoBehaviour {
         } 
 	}
 	void OnTriggerEnter(Collider other){
-		swinging = true;
+		
 
 		if (other.gameObject.tag == "Car") {
-			other.transform.parent = transform;
+            swinging = true;
+            other.transform.parent = transform;
             GameObject[] mainCam = GameObject.FindGameObjectsWithTag("MainCamera");
             mainCam[0].SetActive(false);
             endCam.SetActive(true);
