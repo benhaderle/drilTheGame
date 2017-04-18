@@ -16,12 +16,12 @@ public class SunController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (up) {
-            light.intensity = Mathf.Lerp(light.intensity, 5, .01f);
-            if (light.intensity > 4.9f)
+            light.intensity = Mathf.Lerp(light.intensity, 8, .01f);
+            if (light.intensity > 5.5f)
                 up = false;
         } else {
-            light.intensity = Mathf.Lerp(light.intensity, 1, .01f);
-            if (light.intensity < 1.1f)
+            light.intensity = Mathf.Lerp(light.intensity, 0, .01f);
+            if (light.intensity < .5f)
                 up = true;
         }
 	}

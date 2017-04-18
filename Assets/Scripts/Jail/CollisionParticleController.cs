@@ -13,7 +13,10 @@ public class CollisionParticleController : MonoBehaviour {
     float time = 2f;
     float timer = 2f;
 
-	public float cooldownTime = 0.25f;
+    AudioSource hit;
+    AudioSource[] sources;
+
+    public float cooldownTime = 0.25f;
 	private float currentCooldown = 1f;
 
 	public bool testburst = false;
@@ -21,19 +24,27 @@ public class CollisionParticleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pSystems = this.GetComponentsInChildren<ParticleSystem>();
+
+
+        sources = GetComponents<AudioSource>();
+        hit = sources[0];
+
 	}
 
 	void OnCollisionEnter(Collision col){
-		if (col.collider.tag == "Car"){
+		if (col.collider.tag == "Car" || col.collider.tag == "Shelf"){
 			if (currentCooldown > cooldownTime){
 				currentCooldown = 0f;
 				ParticleBurst();
                 timer = time;
+                hit.Play();
+                AudioSource card = sources[Random.Range(1, 3)];
+                card.Play();
 			}
 		}
 	}
 
-    void OnCollisionStay(Collision collision) {
+  /*  void OnCollisionStay(Collision collision) {
         if (collision.collider.tag == "Car") {
             timer -= Time.deltaTime;
             if (timer < 0) {
@@ -41,7 +52,7 @@ public class CollisionParticleController : MonoBehaviour {
                 timer = time;
             }
         }
-    }
+    }*/
 
 	void ParticleBurst(){
 		int minBurstSize = Mathf.RoundToInt(Mathf.Abs(CarController.Instance.currentSpeed) / 4) + burstCalculationModifier;
