@@ -37,9 +37,11 @@ public class CollisionParticleController : MonoBehaviour {
 				currentCooldown = 0f;
 				ParticleBurst();
                 timer = time;
-                hit.Play();
+                if(!hit.isPlaying)
+                    hit.Play();
                 AudioSource card = sources[Random.Range(1, 3)];
-                card.Play();
+                if(!card.isPlaying)
+                    card.Play();
 			}
 		}
 	}

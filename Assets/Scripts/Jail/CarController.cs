@@ -36,6 +36,7 @@ public class CarController : MonoBehaviour
         car = sources[1];
         police = sources[2];
         
+        
 
         Instance = this;
         transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
