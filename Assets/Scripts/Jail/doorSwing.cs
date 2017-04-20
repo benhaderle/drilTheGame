@@ -33,7 +33,7 @@ public class doorSwing : MonoBehaviour {
         }
         else if (flying) {
             if (jailcell.transform.position.y < 129)
-                jailcell.transform.position = Vector3.Lerp(jailcell.transform.position, new Vector3(0, 130, -115), .04f);
+                jailcell.transform.position = new Vector3(jailcell.transform.position.x, Mathf.Lerp(jailcell.transform.position.y, 130f, .04f), jailcell.transform.position.z);
             else {
                 pausetimer -= Time.deltaTime;
                 if (pausetimer < 0) {
