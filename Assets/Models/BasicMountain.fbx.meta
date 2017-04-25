@@ -1,42 +1,27 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 919c4b31e30fee24bbd61f2f309cd2fb
-timeCreated: 1492717049
-=======
-guid: c451ab9daf333134bab67847f7913d97
-timeCreated: 1493139049
->>>>>>> master
+guid: b2aa9319d2e6a3f4abc5d029b36ea0f4
+timeCreated: 1492713134
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: group3
-    100002: pasted__pSphere6
-    100004: pasted__pSphere9
-    100006: pSphere10
-    100008: pSphere8
-    100010: pSphere9
-    100012: //RootNode
-    100014: transform1
-    100016: transform2
-    400000: group3
-    400002: pasted__pSphere6
-    400004: pasted__pSphere9
-    400006: pSphere10
-    400008: pSphere8
-    400010: pSphere9
-    400012: //RootNode
-    400014: transform1
-    400016: transform2
-    2300000: pasted__pSphere6
-    2300002: pSphere10
-    2300004: pSphere8
-    3300000: pasted__pSphere6
-    3300002: pSphere10
-    3300004: pSphere8
-    4300000: pSphere8
-    4300002: pasted__pSphere6
-    4300004: pSphere10
+    100000: //RootNode
+    100002: pCone1
+    100004: pCone2
+    100006: pCylinder1
+    100008: transform1
+    100010: transform2
+    400000: //RootNode
+    400002: pCone1
+    400004: pCone2
+    400006: pCylinder1
+    400008: transform1
+    400010: transform2
+    2300000: pCone2
+    2300002: //RootNode
+    3300000: pCone2
+    3300002: //RootNode
+    4300000: pCone2
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -62,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
