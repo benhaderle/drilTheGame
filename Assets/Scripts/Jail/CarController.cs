@@ -16,6 +16,7 @@ public class CarController : MonoBehaviour
     AudioSource jail;
     AudioSource car;
     AudioSource police;
+    AudioSource hit;
 
     public float lerpT;
 
@@ -35,7 +36,7 @@ public class CarController : MonoBehaviour
         jail = sources[0];
         car = sources[1];
         police = sources[2];
-        
+        hit = sources[3];
         
 
         Instance = this;
@@ -54,11 +55,11 @@ public class CarController : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yVal, 0);
     }
 
-	/*void OnCollisionEnter(Collision col){
-		if (col.collider.tag == "Shelf"){
-			currentSpeed = 0;
-		}
-	}*/
+	void OnCollisionEnter(Collision col){
+        if (!hit.isPlaying) {
+            //hit.Play();
+        }
+	}
 
     // Update is called once per frame
     void Update() {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class doorSwing : MonoBehaviour {
 	bool swinging;
@@ -15,12 +16,24 @@ public class doorSwing : MonoBehaviour {
 
     GameObject jailcell;
 
+    AudioSource laugh;
+
+    bool laughHasPlayed = false;
+
 	// Use this for initialization
 	void Start () {
 		swinging = false;
         jailcell = transform.parent.gameObject;
+
+        laugh = GetComponent<AudioSource>();
 	}
-	
+
+    IEnumerator Fade() {
+        
+
+        yield return null;
+    }
+
 	// Update is called once per frame
 	void Update () {
         if (swinging) {
@@ -39,10 +52,22 @@ public class doorSwing : MonoBehaviour {
                 if (pausetimer < 0) {
                     jailcell.transform.position = jailcell.transform.position + (new Vector3(0, 80f, 0) * Time.deltaTime);
                     jailcell.transform.Rotate(0, 360 * Time.deltaTime, 0);
-                    alpha += .1f * Time.deltaTime;
+                    alpha += .2f * Time.deltaTime;
                     tweet.color = new Color(255, 255, 255, alpha);
-                }
-                    
+                    Debug.Log(alpha > .5f);
+
+                    if (alpha > .5f) {
+                        if (!laugh.isPlaying) {
+                            if (!laughHasPlayed) {
+                                laugh.Play();
+                                laughHasPlayed = true;
+                            }
+                            else
+                                SceneManager.LoadScene("Mountain", LoadSceneMode.Single);
+                                
+                        }
+                    }
+                }         
             }
         } 
 	}

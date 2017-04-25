@@ -28,6 +28,7 @@ public class CollisionParticleController : MonoBehaviour {
 
         sources = GetComponents<AudioSource>();
         hit = sources[0];
+        hit.volume = 1000 / transform.position.z;
 
 	}
 
@@ -37,7 +38,7 @@ public class CollisionParticleController : MonoBehaviour {
 				currentCooldown = 0f;
 				ParticleBurst();
                 timer = time;
-                if(!hit.isPlaying)
+                if (hit != null && !hit.isPlaying)
                     hit.Play();
                 AudioSource card = sources[Random.Range(1, 3)];
                 if(!card.isPlaying)
