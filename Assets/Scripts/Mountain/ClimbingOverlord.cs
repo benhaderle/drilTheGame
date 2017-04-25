@@ -13,7 +13,6 @@ public class ClimbingOverlord : MonoBehaviour {
 	public float clickBufferTime = 0.5f;
 	public float currentClickTimer = 0f;
 
-
 	// Use this for initialization
 	void Start () {
 		Instance = this;
