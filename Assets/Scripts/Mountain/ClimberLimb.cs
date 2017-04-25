@@ -11,6 +11,10 @@ public class ClimberLimb : MonoBehaviour {
 	private HingeJoint mainJointHinge;
 
 	public Rigidbody limbEndBody;
+	public MeshRenderer IndicatorRenderer;
+	public Color LockedColor;
+	public Color UnlockedColor;
+	public Color SelectedColor;
 
 	// Use this for initialization
 	void Start () {
@@ -21,9 +25,20 @@ public class ClimberLimb : MonoBehaviour {
 	void Update () {
 		if (grabbingMountain) {
 			GrabMountain();
+			if (IndicatorRenderer.material.color != LockedColor){
+				IndicatorRenderer.material.color = LockedColor;
+			}
 		}
 		else {
 			LetGoOfMountain();
+			if (IndicatorRenderer.material.color != UnlockedColor){
+				IndicatorRenderer.material.color = UnlockedColor;
+			}
+		}
+		if (ClimbSphere.Instance.touchedLimb == this.gameObject){
+			if (IndicatorRenderer.material.color != SelectedColor){
+				IndicatorRenderer.material.color = SelectedColor;
+			}
 		}
 	}
 

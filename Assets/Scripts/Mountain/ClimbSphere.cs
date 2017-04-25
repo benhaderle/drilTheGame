@@ -18,7 +18,7 @@ public class ClimbSphere : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!myJoint.autoConfigureConnectedAnchor){
+		if (!myJoint.autoConfigureConnectedAnchor){ //if we are not autoconfiguring the joint anchor, set it to it's location to prevent crazy stuff from happening
 			myJoint.connectedAnchor = this.transform.position;
 		}
 	}
@@ -36,16 +36,37 @@ public class ClimbSphere : MonoBehaviour {
 	}
 
 	public void AttachToLimb(){
-		myJoint.autoConfigureConnectedAnchor = true;
-		myJoint.connectedBody = touchedLimb.GetComponent<ClimberLimb>().limbEndBody;
-		touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = false;
+		if (touchedLimb != null && CheckNotLastLimb(touchedLimb.GetComponent<ClimberLimb>()) ){
+			myJoint.autoConfigureConnectedAnchor = true;
+			myJoint.connectedBody = touchedLimb.GetComponent<ClimberLimb>().limbEndBody;
+			touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = false;
+		}
 	}
 
 	public void Detach(){
-		if (ClimbingOverlord.Instance.currentClickTimer > ClimbingOverlord.Instance.clickBufferTime){
+		if (ClimbingOverlord.Instance.currentClickTimer > ClimbingOverlord.Instance.clickBufferTime && touchedLimb != null){
 			touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = true;
 		}
 		myJoint.connectedBody = null;
 		myJoint.autoConfigureConnectedAnchor = false;
+		touchedLimb = null;
+	}
+
+	bool CheckNotLastLimb(ClimberLimb checkLimb){
+		int checkNum = 0;
+		foreach (GameObject limb in GameObject.FindGameObjectsWithTag("Limb")){
+			if (limb.GetComponent<ClimberLimb>().grabbingMountain){
+				checkNum += 1;
+			}
+		}
+		if (checkNum > 1){
+			return true;
+		}
+		else if (!checkLimb.grabbingMountain){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
