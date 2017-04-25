@@ -49,6 +49,7 @@ public class ClimbSphere : MonoBehaviour {
 		}
 		myJoint.connectedBody = null;
 		myJoint.autoConfigureConnectedAnchor = false;
+		touchedLimb = null;
 	}
 
 	bool CheckNotLastLimb(ClimberLimb checkLimb){

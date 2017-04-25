@@ -14,6 +14,7 @@ public class ClimberLimb : MonoBehaviour {
 	public MeshRenderer IndicatorRenderer;
 	public Color LockedColor;
 	public Color UnlockedColor;
+	public Color SelectedColor;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,11 @@ public class ClimberLimb : MonoBehaviour {
 			LetGoOfMountain();
 			if (IndicatorRenderer.material.color != UnlockedColor){
 				IndicatorRenderer.material.color = UnlockedColor;
+			}
+		}
+		if (ClimbSphere.Instance.touchedLimb == this.gameObject){
+			if (IndicatorRenderer.material.color != SelectedColor){
+				IndicatorRenderer.material.color = SelectedColor;
 			}
 		}
 	}
