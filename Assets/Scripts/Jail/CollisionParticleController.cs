@@ -44,7 +44,9 @@ public class CollisionParticleController : MonoBehaviour {
                 if(!card.isPlaying)
                     card.Play();
 			}
-		}
+            GetComponent<Rigidbody>().AddForce(col.relativeVelocity + new Vector3(0, 100, 0));
+            Debug.Log(col.relativeVelocity);
+        }
 	}
 
   /*  void OnCollisionStay(Collision collision) {
