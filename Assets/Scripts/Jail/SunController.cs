@@ -12,6 +12,14 @@ public class SunController : MonoBehaviour {
 	void Start () {
         light = GetComponent<Light>();
 	}
+
+    int recursiveAdd(int numToAdd) {
+        numToAdd++;
+        if (numToAdd < 5) 
+            return recursiveAdd(numToAdd);
+        else
+            return numToAdd;
+    }
 	
 	// Update is called once per frame
 	void Update () {
