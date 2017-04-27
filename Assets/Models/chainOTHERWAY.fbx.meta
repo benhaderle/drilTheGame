@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c1f92156c0512944eb3e55164753c2da
-timeCreated: 1493153282
+guid: dcf231e90d7d4744db169332fbe130a3
+timeCreated: 1493324951
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -84,7 +84,7 @@ ModelImporter:
     2300000: group2_pasted__group1_pasted__pasted__polySurface7
     3300000: group2_pasted__group1_pasted__pasted__polySurface7
     4300000: group2_pasted__group1_pasted__pasted__polySurface7
-    7400000: swingy
+    7400000: NewSwingy
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -108,7 +108,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: swingy
+      name: NewSwingy
       takeName: Take 001
       firstFrame: 1
       lastFrame: 40
