@@ -28,10 +28,14 @@ public class doorSwing : MonoBehaviour {
         laugh = GetComponent<AudioSource>();
 	}
 
-    IEnumerator Fade() {
+    IEnumerator wait() {
         
 
-        yield return null;
+        yield return new WaitForSeconds(2f);
+        flying = true;
+        GameObject[] mainCam = GameObject.FindGameObjectsWithTag("MainCamera");
+        mainCam[0].SetActive(false);
+        endCam.SetActive(true);
     }
 
 	// Update is called once per frame
@@ -41,10 +45,11 @@ public class doorSwing : MonoBehaviour {
                 door.transform.Rotate(0, Mathf.LerpAngle(door.transform.eulerAngles.y, 0, .001f), 0);
             else {
                 swinging = false;
-                flying = true;
+                StartCoroutine(wait());
             }
         }
         else if (flying) {
+            
             if (jailcell.transform.position.y < 129)
                 jailcell.transform.position = new Vector3(jailcell.transform.position.x, Mathf.Lerp(jailcell.transform.position.y, 130f, .04f), jailcell.transform.position.z);
             else {
@@ -77,9 +82,7 @@ public class doorSwing : MonoBehaviour {
 		if (other.gameObject.tag == "Car") {
             swinging = true;
             other.transform.parent = transform;
-            GameObject[] mainCam = GameObject.FindGameObjectsWithTag("MainCamera");
-            mainCam[0].SetActive(false);
-            endCam.SetActive(true);
+            other.GetComponent<CarController>().enabled = false;
 		}
 	}
 }
