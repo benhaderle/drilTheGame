@@ -29,7 +29,8 @@ public class doorSwing : MonoBehaviour {
 	}
 
     IEnumerator wait() {
-        
+        CarController.Instance.transform.position = new Vector3(0, 2, -149);
+        CarController.Instance.GetComponent<CarController>().enabled = false;
 
         yield return new WaitForSeconds(2f);
         flying = true;
