@@ -1,35 +1,28 @@
 fileFormatVersion: 2
-guid: 919c4b31e30fee24bbd61f2f309cd2fb
+guid: 66e794e4aa4cb4744a2ad317c92b6d14
+timeCreated: 1492717049
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: group3
-    100002: pasted__pSphere6
-    100004: pasted__pSphere9
-    100006: pSphere10
-    100008: pSphere8
-    100010: pSphere9
-    100012: //RootNode
-    100014: transform1
-    100016: transform2
-    400000: group3
-    400002: pasted__pSphere6
-    400004: pasted__pSphere9
-    400006: pSphere10
-    400008: pSphere8
-    400010: pSphere9
-    400012: //RootNode
-    400014: transform1
-    400016: transform2
-    2300000: pasted__pSphere6
-    2300002: pSphere10
-    2300004: pSphere8
-    3300000: pasted__pSphere6
-    3300002: pSphere10
-    3300004: pSphere8
-    4300000: pSphere8
-    4300002: pasted__pSphere6
-    4300004: pSphere10
+    100000: //RootNode
+    100002: group
+    100004: polySurface11
+    100006: polySurface14
+    100008: polySurface7
+    100010: transform1
+    400000: //RootNode
+    400002: group
+    400004: polySurface11
+    400006: polySurface14
+    400008: polySurface7
+    400010: transform1
+    2300000: polySurface14
+    2300002: polySurface7
+    3300000: polySurface14
+    3300002: polySurface7
+    4300000: polySurface7
+    4300002: polySurface14
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -55,7 +48,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
