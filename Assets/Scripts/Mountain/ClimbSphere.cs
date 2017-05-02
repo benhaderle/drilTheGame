@@ -24,9 +24,11 @@ public class ClimbSphere : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		if (col.gameObject.layer == 8){
-			touchingLimb = true;
-			touchedLimb = col.gameObject;
+		if (touchedLimb == null){
+			if (col.gameObject.layer == 8){
+				touchingLimb = true;
+				touchedLimb = col.gameObject;
+			}
 		}
 	}
 	void OnTriggerExit(Collider col){
@@ -36,34 +38,45 @@ public class ClimbSphere : MonoBehaviour {
 	}
 
 	public void AttachToLimb(){
-		if (touchedLimb != null && CheckNotLastLimb(touchedLimb.GetComponent<ClimberLimb>()) ){
-			myJoint.autoConfigureConnectedAnchor = true;
-			myJoint.connectedBody = touchedLimb.GetComponent<ClimberLimb>().limbEndBody;
-			touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = false;
+		if (touchedLimb != null){
+			if (CheckNotLastLimb(touchedLimb.GetComponent<ClimberLimb>())){
+				myJoint.autoConfigureConnectedAnchor = true;
+				myJoint.connectedBody = touchedLimb.GetComponent<ClimberLimb>().limbEndBody;
+			}
+			if (touchedLimb != null) touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = false;
 		}
 	}
 
-	public void Detach(){
-		if (ClimbingOverlord.Instance.currentClickTimer > ClimbingOverlord.Instance.clickBufferTime && touchedLimb != null){
+	public void Detach(bool overrideClickCheck){
+		if (!overrideClickCheck){
+			if (ClimbingOverlord.Instance.currentClickTimer > ClimbingOverlord.Instance.clickBufferTime && touchedLimb != null){
+				touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = true;
+			}
+			myJoint.connectedBody = null;
+			myJoint.autoConfigureConnectedAnchor = false;
+			touchedLimb = null;
+		}
+		else {
 			touchedLimb.GetComponent<ClimberLimb>().grabbingMountain = true;
+			myJoint.connectedBody = null;
+			myJoint.autoConfigureConnectedAnchor = false;
+			touchedLimb = null;
 		}
-		myJoint.connectedBody = null;
-		myJoint.autoConfigureConnectedAnchor = false;
-		touchedLimb = null;
 	}
 
-	bool CheckNotLastLimb(ClimberLimb checkLimb){
+	public bool CheckNotLastLimb(ClimberLimb checkLimb){
 		int checkNum = 0;
 		foreach (GameObject limb in GameObject.FindGameObjectsWithTag("Limb")){
 			if (limb.GetComponent<ClimberLimb>().grabbingMountain){
 				checkNum += 1;
 			}
 		}
-		if (checkNum > 1){
+		if (checkNum >= 1){
 			return true;
 		}
 		else if (!checkLimb.grabbingMountain){
-			return true;
+			Detach(true);
+			return false;
 		}
 		else {
 			return false;
