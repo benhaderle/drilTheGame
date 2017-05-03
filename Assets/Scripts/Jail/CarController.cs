@@ -9,16 +9,14 @@ public class CarController : MonoBehaviour
     public static GameObject spedometer;
     //public GameObject carModel;
     public static Text text;
-    CharacterController playerCon;
     bool accelerating;
     bool gliding;
     bool braking;
-    bool reversing;
-    bool moving;
 
     AudioSource jail;
     AudioSource car;
     AudioSource police;
+    AudioSource hit;
 
     public float lerpT;
 
@@ -38,10 +36,10 @@ public class CarController : MonoBehaviour
         jail = sources[0];
         car = sources[1];
         police = sources[2];
+        hit = sources[3];
         
 
         Instance = this;
-        playerCon = GetComponent<CharacterController>();
         transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
     }
 
@@ -57,11 +55,11 @@ public class CarController : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yVal, 0);
     }
 
-	/*void OnCollisionEnter(Collision col){
-		if (col.collider.tag == "Shelf"){
-			currentSpeed = 0;
-		}
-	}*/
+	void OnCollisionEnter(Collision col){
+        if (!hit.isPlaying) {
+            //hit.Play();
+        }
+	}
 
     // Update is called once per frame
     void Update() {
@@ -85,7 +83,6 @@ public class CarController : MonoBehaviour
             accelerating = true;
             gliding = false;
             braking = false;
-            reversing = false;
         }
         else if (vertical <= .01 && vertical >= -.01f) {
             gliding = true;
@@ -100,7 +97,6 @@ public class CarController : MonoBehaviour
 
         //calculate acceleration
         if (accelerating) {
-            moving = true;
             if (currentSpeed == 0)
                 currentSpeed = idleSpeed;
             if (currentSpeed == idleSpeed) {
@@ -134,7 +130,6 @@ public class CarController : MonoBehaviour
             }
             if (Mathf.Abs(currentSpeed) <= .3f) {
                 currentSpeed = 0;
-                moving = false;
             }
         }
 
