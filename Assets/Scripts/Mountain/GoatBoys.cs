@@ -15,8 +15,8 @@ public class GoatBoys : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (goatTouch == true) {
-			goatPF = transform.Translate (Random.Range (-10, 10), Random.Range (-10, 10), Random.Range (-10, 10));
-			goatPF = transform.Rotate (0f, goatSpeed * Time.deltaTime, 0f);
+			transform.Translate (Random.Range (-10, 10), Random.Range (-10, 10), Random.Range (-10, 10));
+			transform.Rotate (0f, goatSpeed * Time.deltaTime, 0f);
 		}
 	}
 
