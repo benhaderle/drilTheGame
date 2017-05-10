@@ -67,13 +67,15 @@ public class ClimbingOverlord : MonoBehaviour {
 	}
 
 	IEnumerator FadeAndTransition(int targetSceneIndex){
-		if (FadeImage.color.a < 1){
-			FadeImage.color += Color.black * Time.deltaTime;
-		}
+		while (true){
+			if (FadeImage.color.a < 1){
+				FadeImage.color += Color.black * Time.deltaTime;
+			}
 
-		if (FadeImage.color.a >= 1){
-			SceneManager.LoadScene(targetSceneIndex);
+			if (FadeImage.color.a >= 1){
+				SceneManager.LoadScene(targetSceneIndex);
+			}
+			yield return new WaitForSeconds(0.2f);
 		}
-		yield return new WaitForEndOfFrame();
 	}
 }
