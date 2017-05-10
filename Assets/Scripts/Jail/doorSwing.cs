@@ -13,6 +13,7 @@ public class doorSwing : MonoBehaviour {
 	public GameObject door;
     public GameObject endCam;
     public Image tweet;
+    public Image Fade;
 
     GameObject jailcell;
 
@@ -69,9 +70,12 @@ public class doorSwing : MonoBehaviour {
                                 laughHasPlayed = true;
                             }
                             else
-                                SceneManager.LoadScene("Mountain", LoadSceneMode.Single);
+                                Fade.gameObject.SetActive(true);
+                                
                                 
                         }
+                        if(Fade.color.a > 1f)
+                            SceneManager.LoadScene("Mountain", LoadSceneMode.Single);
                     }
                 }         
             }
