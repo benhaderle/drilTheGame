@@ -20,7 +20,7 @@ public class GoatBoys : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collision col){
+	void OnTriggerEnter(Collider col){
 		goatTouch = true;
 	}
 }
