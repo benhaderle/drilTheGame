@@ -16,7 +16,7 @@ public class ClimbingOverlord : MonoBehaviour {
 
 	public float yKillPlane = -5f;
 	public float ySuccessPlane = 10f;
-	bool canControl = true;
+	public bool canControl = false;
 
 	public float clickBufferTime = 0.5f;
 	public float currentClickTimer = 0f;
@@ -58,17 +58,24 @@ public class ClimbingOverlord : MonoBehaviour {
 	void StartCinematic(){
 		Camera.main.GetComponent<CameraControl>().enabled = false;
 		canControl = false;
-		StartCoroutine(Camera.main.GetComponent<CameraCinematic>().ExecuteCinematic());
+		CameraCinematic endCine = Camera.main.GetComponentInChildren<CameraCinematic>();
+
+		Camera.main.gameObject.AddComponent<CameraCinematic>();
+		Camera.main.gameObject.GetComponent<CameraCinematic>().shots = endCine.shots;
+
+		StartCoroutine(Camera.main.GetComponent<CameraCinematic>().ExecuteCinematic(false));
 	}
 
 	IEnumerator FadeAndTransition(int targetSceneIndex){
-		if (FadeImage.color.a < 1){
-			FadeImage.color += Color.black * Time.deltaTime;
-		}
+		while (true){
+			if (FadeImage.color.a < 1){
+				FadeImage.color += Color.black * Time.deltaTime;
+			}
 
-		if (FadeImage.color.a >= 1){
-			SceneManager.LoadScene(targetSceneIndex);
+			if (FadeImage.color.a >= 1){
+				SceneManager.LoadScene(targetSceneIndex);
+			}
+			yield return new WaitForSeconds(0.2f);
 		}
-		yield return new WaitForEndOfFrame();
 	}
 }
