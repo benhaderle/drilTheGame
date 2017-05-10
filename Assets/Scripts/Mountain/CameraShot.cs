@@ -7,4 +7,5 @@ public class CameraShot : MonoBehaviour {
 	public float durationOfMove;
 	public AnimationCurve curveToGetHere;
 
+    public GameObject setActive;
 }
