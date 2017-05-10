@@ -6,7 +6,7 @@ public class CameraCinematic : MonoBehaviour {
 
 	public CameraShot[] shots;
 
-	public IEnumerator ExecuteCinematic(){
+	public IEnumerator ExecuteCinematic(bool destroySelfAtCompletion){
 		int shotNumber = 0;
 
 		while (true){
@@ -37,6 +37,9 @@ public class CameraCinematic : MonoBehaviour {
 				break;
 			}
 
+		}
+		if (destroySelfAtCompletion){
+			Destroy(this);
 		}
 
 		yield return null;

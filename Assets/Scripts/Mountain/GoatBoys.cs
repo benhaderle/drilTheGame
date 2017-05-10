@@ -21,6 +21,8 @@ public class GoatBoys : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		goatTouch = true;
+		if (col.gameObject.layer == 8){
+			goatTouch = true;
+		}
 	}
 }
