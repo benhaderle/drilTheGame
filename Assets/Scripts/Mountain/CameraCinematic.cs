@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraCinematic : MonoBehaviour {
 
 	public CameraShot[] shots;
+    
 
 	public IEnumerator ExecuteCinematic(bool destroySelfAtCompletion){
 		int shotNumber = 0;
@@ -26,6 +27,8 @@ public class CameraCinematic : MonoBehaviour {
 				}
 
 				else {
+                    if (shots[shotNumber].setActive != null)
+                        shots[shotNumber].setActive.SetActive(true);
 					break;
 				}
 			}
@@ -38,6 +41,8 @@ public class CameraCinematic : MonoBehaviour {
 			}
 
 		}
+
+
 		if (destroySelfAtCompletion){
 			Destroy(this);
 		}
