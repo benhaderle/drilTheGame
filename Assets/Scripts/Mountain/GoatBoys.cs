@@ -23,6 +23,7 @@ public class GoatBoys : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.layer == 8){
 			goatTouch = true;
+            GetComponent<AudioSource>().Play();
 		}
 	}
 }
