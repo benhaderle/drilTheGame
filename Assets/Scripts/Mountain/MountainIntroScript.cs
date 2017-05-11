@@ -15,6 +15,9 @@ public class MountainIntroScript : MonoBehaviour {
 	public float fakeBodyLaunchForce;
 	public Vector3 launchForceVector;
 
+    public AudioSource elevator;
+    public AudioSource mountain;
+
 
 	public float gateOpenSpeed;
 	public Transform gateAfterOpenTransform;
@@ -32,13 +35,23 @@ public class MountainIntroScript : MonoBehaviour {
 		fakeClimberBody = fakeClimberHipObject.GetComponent<Rigidbody>();
 		originalGateRot = gateTransform.rotation;
 
-		StartCoroutine(OpeningCinematicScript.ExecuteCinematic(true));
-		StartCoroutine(JailMoveCinematic.ExecuteCinematic(true));
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.timeSinceLevelLoad >= gateOpenDelay){
+        if (Time.timeSinceLevelLoad >= .5f) {
+            elevator.volume -= .1f * Time.deltaTime;
+            if (!mountain.isPlaying) {
+                StartCoroutine(OpeningCinematicScript.ExecuteCinematic(true));
+                StartCoroutine(JailMoveCinematic.ExecuteCinematic(true));
+                mountain.Play();
+            }
+            mountain.volume += .01f * Time.deltaTime;
+            
+        }
+
+		if (Time.timeSinceLevelLoad >= gateOpenDelay + .5f){
 			if (timer > gateOpenSpeed){
 				timer = gateOpenSpeed;
 			}
@@ -46,7 +59,7 @@ public class MountainIntroScript : MonoBehaviour {
 
 			timer += Time.deltaTime;
 		}
-		if (Time.timeSinceLevelLoad >= fakeLaunchDelay && !hasLaunched){
+		if (Time.timeSinceLevelLoad >= fakeLaunchDelay + .5f && !hasLaunched){
 			fakeClimberHipObject.transform.parent.gameObject.SetActive(true);
 			fakeClimberBody.AddRelativeForce(launchForceVector * fakeBodyLaunchForce, ForceMode.Impulse);
 			hasLaunched = true;
