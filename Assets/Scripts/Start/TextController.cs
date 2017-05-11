@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TextController : MonoBehaviour {
+    
+
 
     public Light light;
     Text text;
