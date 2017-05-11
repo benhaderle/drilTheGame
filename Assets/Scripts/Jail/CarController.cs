@@ -31,6 +31,7 @@ public class CarController : MonoBehaviour
 
     // Use this for initialization
     void Start() {
+        AudioListener.volume = 0f;
         // save reference to our component
         AudioSource[] sources = GetComponents<AudioSource>();
         jail = sources[0];
@@ -64,6 +65,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update() {
         //audio
+        AudioListener.volume +=  .01f * Time.deltaTime;
         car.pitch = 1 + (.8f * (Mathf.Abs(currentSpeed) / maxSpeed));
 
         if (jail.pitch < 2) 

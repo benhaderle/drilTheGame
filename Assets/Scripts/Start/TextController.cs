@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TextController : MonoBehaviour {
 
+    public Light light;
     Text text;
     float r;
     float g;
@@ -54,5 +55,6 @@ public class TextController : MonoBehaviour {
 
         text.color = new Color(r, g, b);
         Camera.main.backgroundColor = new Color(1 - r, 1 - g, 1 - b);
+        light.color = Camera.main.backgroundColor;
 	}
 }
