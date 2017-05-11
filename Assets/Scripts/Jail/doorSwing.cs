@@ -14,6 +14,7 @@ public class doorSwing : MonoBehaviour {
     public GameObject endCam;
     public Image tweet;
     public Image Fade;
+    AudioSource[] carSounds;
 
     GameObject jailcell;
 
@@ -60,6 +61,11 @@ public class doorSwing : MonoBehaviour {
                     jailcell.transform.position = jailcell.transform.position + (new Vector3(0, 80f, 0) * Time.deltaTime);
                     jailcell.transform.Rotate(0, 360 * Time.deltaTime, 0);
                     alpha += .2f * Time.deltaTime;
+
+
+                    for (int i = 0; i < carSounds.Length; i++)
+                        carSounds[i].volume -= .1f * Time.deltaTime;
+
                     tweet.color = new Color(255, 255, 255, alpha);
                     Debug.Log(alpha > .5f);
 
@@ -88,6 +94,7 @@ public class doorSwing : MonoBehaviour {
             swinging = true;
             other.transform.parent = transform;
             other.GetComponent<CarController>().enabled = false;
+            carSounds = other.GetComponents<AudioSource>();
 		}
 	}
 }

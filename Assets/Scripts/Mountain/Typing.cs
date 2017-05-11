@@ -37,7 +37,7 @@ public class Typing : MonoBehaviour {
             stable.Stop();
             if(!death.isPlaying)
                 death.Play();
-            dril.transform.position = Vector3.Lerp(dril.transform.position, new Vector3(0, 1674, 0), .01f);
+            dril.transform.position = Vector3.Lerp(dril.transform.position, new Vector3(0, 1674, 0), .05f);
             timer -= Time.deltaTime;
             if (timer < 0 && timer > -.5f) {
                 fade.SetActive(true);
