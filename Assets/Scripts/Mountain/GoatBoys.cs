@@ -27,7 +27,7 @@ public class GoatBoys : MonoBehaviour {
 	}
 }
 
-public class GoatBoys : MonoBehaviour {
+/*public class GoatBoys : MonoBehaviour {
 
 	public GameObject goatPF;
 	bool goatTouch;
@@ -49,3 +49,4 @@ public class GoatBoys : MonoBehaviour {
 		goatTouch = true;
 	}
 }
+*/
