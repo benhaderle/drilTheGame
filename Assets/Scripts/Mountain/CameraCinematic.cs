@@ -28,7 +28,7 @@ public class CameraCinematic : MonoBehaviour {
 
 				else {
                     if (shots[shotNumber].setActive != null)
-                        shots[shotNumber].setActive.SetActive(true);
+                        shots[shotNumber].setActive.SetActive(!shots[shotNumber].setActive.activeSelf);
 					break;
 				}
 			}
