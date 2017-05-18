@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Typing : MonoBehaviour {
     public AudioSource mountain;
@@ -37,7 +38,7 @@ public class Typing : MonoBehaviour {
             stable.Stop();
             if(!death.isPlaying)
                 death.Play();
-            dril.transform.position = Vector3.Lerp(dril.transform.position, new Vector3(0, 1674, 0), .01f);
+            dril.transform.position = Vector3.Lerp(dril.transform.position, new Vector3(0, 1674, 0), .05f);
             timer -= Time.deltaTime;
             if (timer < 0 && timer > -.5f) {
                 fade.SetActive(true);
@@ -47,8 +48,15 @@ public class Typing : MonoBehaviour {
 
             if (fade.GetComponent<Image>().color.a >= 1 && fade.GetComponent<Image>().color.a <= 1.3F) {
                 blackFade.SetActive(true);
+                
                 if (!laugh.isPlaying)
                     laugh.Play();
+            }
+            if (blackFade.GetComponent<Image>().color.a > 0f) {
+
+                AudioListener.volume -= .1f * Time.deltaTime;
+                if (AudioListener.volume < .3f)
+                    SceneManager.LoadScene("Credits", LoadSceneMode.Single);
             }
 
         }
